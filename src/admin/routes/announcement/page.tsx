@@ -15,6 +15,8 @@ import { sdk } from "../../lib/sdk";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 
+
+
 type Announcement = {
   id: string;
   message: string;
@@ -30,6 +32,9 @@ type AnnouncementsResponse = {
 const AnnouncementsPage = () => {
   const queryClient = useQueryClient();
   const { register, handleSubmit, reset } = useForm<{ message: string }>();
+
+  const PUBLISHABLE_API_KEY = import.meta.env.VITE_PUBLISHABLE_API_KEY
+    
 
   const columnHelper = createDataTableColumnHelper<Announcement>();
 
@@ -64,8 +69,11 @@ const AnnouncementsPage = () => {
 
   const { data, isLoading, error } = useQuery<AnnouncementsResponse>({
     queryFn: () =>
-      sdk.client.fetch(`/admin/announcements`, {
+      sdk.client.fetch(`/store/announcements`, {
         query: { limit, offset },
+        headers: {
+          "x-publishable-api-key": PUBLISHABLE_API_KEY!,
+        },
       }),
     queryKey: [["announcements", limit, offset]],
   });
@@ -74,10 +82,10 @@ const AnnouncementsPage = () => {
 
   const mutation = useMutation({
     mutationFn: async (newAnnouncement: { message: string }) => {
-      return sdk.client.fetch(`/admin/announcements`, {
+      return sdk.client.fetch(`/store/announcements`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "x-publishable-api-key": PUBLISHABLE_API_KEY!,
         },
         body: newAnnouncement,
       });
@@ -98,8 +106,11 @@ const AnnouncementsPage = () => {
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      return sdk.client.fetch(`/admin/announcements/${id}`, {
+      return sdk.client.fetch(`/store/announcements/${id}`, {
         method: "DELETE",
+        headers: {
+          "x-publishable-api-key": PUBLISHABLE_API_KEY!,
+        },
       });
     },
     onSuccess: () => {

@@ -2,7 +2,6 @@ import { z } from "zod";
 import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
 import {
   createAnnouncementWorkflow,
-  deleteAnnouncementWorkFlow,
 } from "../../../workflows/create-announcement";
 
 import { PostAdminCreateAnnouncement } from "./validators";

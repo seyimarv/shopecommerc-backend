@@ -1,8 +1,0 @@
-database:
-  client: postgres
-  connection:
-    host: localhost
-    port: 5432
-    database: Shophaul
-    user: postgres
-    password: "Tomilayo1"

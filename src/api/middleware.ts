@@ -3,7 +3,7 @@ import {
   validateAndTransformBody,
   validateAndTransformQuery,
 } from "@medusajs/framework/http";
-import { PostAdminCreateAnnouncement } from "./admin/announcements/validators";
+import { PostAdminCreateAnnouncement } from "./store/announcements/validators";
 import { createFindParams } from "@medusajs/medusa/api/utils/validators";
 
 export const GetAnnouncementsSchema = createFindParams();
@@ -11,7 +11,7 @@ export const GetAnnouncementsSchema = createFindParams();
 export default defineMiddlewares({
   routes: [
     {
-      matcher: "/admin/announcements",
+      matcher: "/store/announcements",
       method: "POST",
       middlewares: [validateAndTransformBody(PostAdminCreateAnnouncement)],
     },
