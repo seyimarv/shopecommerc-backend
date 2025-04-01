@@ -13,9 +13,30 @@ module.exports = defineConfig({
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
   },
+  plugins: [
+    // {
+    //   resolve: "medusa-payment-paystack",
+    //   options: {
+    //     secret_key: process.env.PAYSTACK_SECRET_KEY,
+    //   },
+    // },
+  ],
   modules: [
     {
       resolve: "./src/modules/announcement",
+    },
+    {
+      resolve: "@medusajs/medusa/payment",
+      options: {
+        providers: [
+          {
+            resolve: "medusa-payment-paystack",
+            options: {
+              secret_key: process.env.PAYSTACK_SECRET_KEY,
+            } satisfies import("medusa-payment-paystack").PluginOptions,
+          },
+        ],
+      },
     },
   ],
 });
