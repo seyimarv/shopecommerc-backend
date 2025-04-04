@@ -6,10 +6,12 @@ import {
 import { PostAdminCreateAnnouncement } from "./store/announcements/validators";
 import { createFindParams } from "@medusajs/medusa/api/utils/validators";
 import { z } from "zod";
+import multer from "multer"
 
 export const GetAnnouncementsSchema = createFindParams();
 
-console.log("here")
+
+const upload = multer({ storage: multer.memoryStorage() })
 
 export default defineMiddlewares({
   routes: [
@@ -19,12 +21,23 @@ export default defineMiddlewares({
       middlewares: [validateAndTransformBody(PostAdminCreateAnnouncement)],
     },
     {
-      method:  ["POST"],
+      method: ["POST"],
       matcher: "/admin/collections/:id",
       additionalDataValidator: {
         cover_image: z.string().optional(),
       },
     },
+    {
+      matcher: "/store/receipts", // Adjust this path to match your actual receipts API route
+      method: ["POST", "PUT"], // Include any HTTP methods that need the increased limit
+      middlewares: [
+        upload.array("files"),
+      ],
+      bodyParser: { 
+        sizeLimit: "2mb"
+      },
+    },
+
 
     // {
     //   matcher: "/admin/announcements",
