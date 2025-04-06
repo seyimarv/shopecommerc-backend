@@ -7,6 +7,7 @@ import { PostAdminCreateAnnouncement } from "./store/announcements/validators";
 import { createFindParams } from "@medusajs/medusa/api/utils/validators";
 import { z } from "zod";
 import multer from "multer"
+import { SearchSchema } from "./store/search/products/route"
 
 export const GetAnnouncementsSchema = createFindParams();
 
@@ -26,6 +27,13 @@ export default defineMiddlewares({
       additionalDataValidator: {
         cover_image: z.string().optional(),
       },
+    },
+    {
+      matcher: "/store/products/search",
+      method: ["POST"],
+      middlewares: [
+        validateAndTransformBody(SearchSchema),
+      ],
     },
     {
       matcher: "/store/receipts", // Adjust this path to match your actual receipts API route

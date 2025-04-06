@@ -17,7 +17,6 @@ module.exports = defineConfig({
       authCors: process.env.AUTH_CORS!,
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
-
     },
   },
   plugins: [
@@ -45,6 +44,14 @@ module.exports = defineConfig({
             },
           },
         ],
+      },
+    },
+    {
+      resolve: "./src/modules/algolia",
+      options: {
+        appId: process.env.ALGOLIA_APP_ID!,
+        apiKey: process.env.ALGOLIA_API_KEY!,
+        productIndexName: process.env.ALGOLIA_PRODUCT_INDEX_NAME!,
       },
     },
     {
