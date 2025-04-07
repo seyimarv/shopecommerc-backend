@@ -26,7 +26,7 @@ export default class AlgoliaModuleService {
     }
   }
 
-  async indexData(data: Record<string, unknown>[], type: AlgoliaIndexType = "product") {
+  async indexData(data: Record<string, unknown>[], p0: string, p1: { currency_code: string; }, type: AlgoliaIndexType = "product") {
     const indexName = await this.getIndexName(type);
     this.client.saveObjects({
       indexName,

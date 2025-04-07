@@ -13,6 +13,7 @@ import {
     let offset = 0
     const limit = 50
     let totalIndexed = 0
+    const currency_code = "usd"
   
     logger.info("Starting product indexing...")
   
@@ -22,6 +23,7 @@ import {
           input: {
             limit,
             offset,
+            currency_code
           },
         })
   

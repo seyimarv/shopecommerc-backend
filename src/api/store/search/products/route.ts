@@ -15,7 +15,7 @@ export async function POST(
 ) {
   const algoliaModuleService: AlgoliaModuleService = req.scope.resolve(ALGOLIA_MODULE)
 
-  const { query } = req.validatedBody
+  const { query } = req.body
 
   const results = await algoliaModuleService.search(
     query as string 
