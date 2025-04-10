@@ -17,10 +17,8 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
     entity: "announcement",
     fields: ["id", "message"],
   });
-  console.log(response);
   const { data: announcements, metadata: { count, take, skip } = {} } =
     response;
-  console.log("query", announcements);
 
   res.json({
     announcements,
@@ -37,7 +35,6 @@ export const POST = async (
   const data = await createAnnouncementWorkflow(req.scope).run({
     input: req.body,
   });
-  console.log("data", data.result);
   res.json({ announcement: data.result });
 };
 

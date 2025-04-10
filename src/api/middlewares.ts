@@ -29,6 +29,10 @@ export default defineMiddlewares({
       },
     },
     {
+      method: ["GET"],
+      matcher: "/store/restocked-products",
+    },
+    {
       matcher: "/store/products/search",
       method: ["POST"],
       middlewares: [
