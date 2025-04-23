@@ -9,12 +9,12 @@ if (!paystackSecretKey) {
 }
 
 module.exports = defineConfig({
+  admin: {
+    disable: process.env.DISABLE_MEDUSA_ADMIN === "true" || false,
+  },
   projectConfig: {
     workerMode:
       process.env.WORKER_MODE as "shared" | "worker" | "server" || "shared",
-    admin: {
-      disable: process.env.DISABLE_MEDUSA_ADMIN === "true" || false,
-    },
     databaseUrl: process.env.DATABASE_URL,
     redisUrl: process.env.REDIS_URL,
     http: {
