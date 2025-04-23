@@ -76,5 +76,5 @@ export default async function updateRestockedProductsJob(container: MedusaContai
 
 export const config = {
     name: "daily-product-report",
-    schedule: "* * * * *", // Every minute
+    schedule: "0 0 * * *", // Every minute
 };

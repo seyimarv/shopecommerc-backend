@@ -10,7 +10,13 @@ if (!paystackSecretKey) {
 
 module.exports = defineConfig({
   projectConfig: {
+    workerMode:
+      process.env.WORKER_MODE as "shared" | "worker" | "server" || "shared",
+    admin: {
+      disable: process.env.DISABLE_MEDUSA_ADMIN === "true" || false,
+    },
     databaseUrl: process.env.DATABASE_URL,
+    redisUrl: process.env.REDIS_URL,
     http: {
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
@@ -29,6 +35,26 @@ module.exports = defineConfig({
   ],
   modules: [
     {
+      resolve: "@medusajs/medusa/cache-redis",
+      options: {
+        redisUrl: process.env.REDIS_URL,
+      },
+    },
+    {
+      resolve: "@medusajs/medusa/event-bus-redis",
+      options: {
+        redisUrl: process.env.REDIS_URL,
+      },
+    },
+    {
+      resolve: "@medusajs/medusa/workflow-engine-redis",
+      options: {
+        redis: {
+          url: process.env.REDIS_URL,
+        },
+      },
+    },
+    {
       resolve: "./src/modules/announcement",
     },
     {
@@ -38,7 +64,6 @@ module.exports = defineConfig({
       resolve: "@medusajs/medusa/notification",
       options: {
         providers: [
-          // ...
           {
             resolve: "@medusajs/medusa/notification-local",
             id: "local",
