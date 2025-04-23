@@ -43,6 +43,7 @@ export default defineMiddlewares({
       matcher: "/store/receipts", // Adjust this path to match your actual receipts API route
       method: ["POST", "PUT"], // Include any HTTP methods that need the increased limit
       middlewares: [
+        // @ts-ignore
         upload.array("files"),
       ],
       bodyParser: { 

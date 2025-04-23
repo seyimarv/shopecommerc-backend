@@ -134,6 +134,7 @@ export async function GET(
             | string
             | string[]
         const { sales_channel_ids: idsFromPublishableKey = [] } =
+         // @ts-ignore
             req.publishable_key_context
 
         let channelToUse: string | undefined
