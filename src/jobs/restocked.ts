@@ -4,13 +4,12 @@ import {
 import { getVariantAvailability } from "@medusajs/framework/utils";
 import { deleteRestockEventWorkflow } from "../workflows/create-restock-event";
 
+
 export default async function updateRestockedProductsJob(container: MedusaContainer) {
-    console.log("runnig restocked job")
     const productService = container.resolve("product")
-    const restockModuleService = container.resolve("restock")
+    const restockModuleService: any = container.resolve("restock")
 
     const [restockEvents] = await restockModuleService.listAndCountRestockEvents();
-    console.log("restock events", restockEvents)
     if (!restockEvents.length) {
         return;
     }
@@ -18,14 +17,11 @@ export default async function updateRestockedProductsJob(container: MedusaContai
     const [products] = await productService.listAndCountProducts(
         { id: productsIds },
     );
-    console.log("products", products)
 
     for (const product of products) {
         const productId = product.id
         const restockEvent = restockEvents.find(restockEvent => restockEvent.product_id === productId)
-        console.log("restock event", restockEvent)
         if (!restockEvent) {
-            console.log("no restock event found for product", productId)
             return;
         }
 
@@ -48,7 +44,6 @@ export default async function updateRestockedProductsJob(container: MedusaContai
                     isRestocked: false
                 }
             })
-            console.log("no variants with manage inventory found for product", productId)
             return;
         }
 
@@ -60,11 +55,8 @@ export default async function updateRestockedProductsJob(container: MedusaContai
             variantAvailability => variantAvailability.availability > 0
         )
 
-        console.log(anyVariantInStock)
-
         if (anyVariantInStock) {
             await deleteRestockEventWorkflow(restockEvent.id, { container })
-            console.log("deleted from restock", "restocked")
             await productService.updateProducts(productId, {
                 metadata: {
                     isRestocked: true
