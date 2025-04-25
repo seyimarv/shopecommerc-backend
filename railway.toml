@@ -1,0 +1,16 @@
+[build]
+builder = "nixpacks"
+buildCommand = "NODE_OPTIONS=--max-old-space-size=4096 yarn install"
+
+[deploy]
+startCommand = "yarn start"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+restartPolicyType = "on-failure"
+restartPolicyMaxRetries = 10
+
+[nixpacks]
+node-memory-available = "4096"
+
+[variables]
+NODE_OPTIONS = "--max-old-space-size=4096"
