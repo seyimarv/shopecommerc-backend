@@ -55,12 +55,12 @@ module.exports = defineConfig({
         },
       },
     },
-    {
-      resolve: "./src/modules/announcement",
-    },
-    {
-      resolve: "./src/modules/restock",
-    },
+    // {
+    //   resolve: "./src/modules/announcement",
+    // },
+    // {
+    //   resolve: "./src/modules/restock",
+    // },
     {
       resolve: "@medusajs/medusa/notification",
       options: {
@@ -75,14 +75,14 @@ module.exports = defineConfig({
         ],
       },
     },
-    // {
-    //   resolve: "./src/modules/algolia",
-    //   options: {
-    //     appId: process.env.ALGOLIA_APP_ID!,
-    //     apiKey: process.env.ALGOLIA_API_KEY!,
-    //     productIndexName: process.env.ALGOLIA_PRODUCT_INDEX_NAME!,
-    //   },
-    // },
+    {
+      resolve: "./src/modules/algolia",
+      options: {
+        appId: process.env.ALGOLIA_APP_ID!,
+        apiKey: process.env.ALGOLIA_API_KEY!,
+        productIndexName: process.env.ALGOLIA_PRODUCT_INDEX_NAME!,
+      },
+    },
     {
       resolve: "@medusajs/medusa/file",
       options: {
@@ -115,20 +115,20 @@ module.exports = defineConfig({
         ],
       },
     },
-    {
-      resolve: "@medusajs/medusa/payment",
-      options: {
-        providers: [
-          {
-            resolve: "./src/modules/paystack",
-            id: "paystack",
-            options: {
-              secret_key: paystackSecretKey,
-              debug: true,
-            },
-          },
-        ],
-      },
-    },
+    // {
+    //   resolve: "@medusajs/medusa/payment",
+    //   options: {
+    //     providers: [
+    //       {
+    //         resolve: "./src/modules/paystack",
+    //         id: "paystack",
+    //         options: {
+    //           secret_key: paystackSecretKey,
+    //           debug: true,
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
   ],
 });
