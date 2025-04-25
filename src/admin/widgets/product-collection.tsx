@@ -54,7 +54,6 @@ const ProductCollectionWidget = ({
       });
     },
     onSuccess: (data) => {
-      //   queryClient.invalidateQueries({ queryKey: [["announcements"]] });
       //   reset();
     },
     onError: (error) => {

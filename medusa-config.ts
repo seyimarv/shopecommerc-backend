@@ -49,12 +49,6 @@ module.exports = defineConfig({
         },
       },
     },
-    // {
-    //   resolve: "./src/modules/announcement",
-    // },
-    // {
-    //   resolve: "./src/modules/restock",
-    // },
     {
       resolve: "@medusajs/medusa/notification",
       options: {
