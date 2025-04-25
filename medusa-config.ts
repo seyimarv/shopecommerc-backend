@@ -75,14 +75,8 @@ module.exports = defineConfig({
         ],
       },
     },
-    {
-      resolve: "./src/modules/algolia",
-      options: {
-        appId: process.env.ALGOLIA_APP_ID!,
-        apiKey: process.env.ALGOLIA_API_KEY!,
-        productIndexName: process.env.ALGOLIA_PRODUCT_INDEX_NAME!,
-      },
-    },
+    // Algolia module removed to reduce memory usage
+
     {
       resolve: "@medusajs/medusa/file",
       options: {
