@@ -22,10 +22,10 @@ export default defineMiddlewares({
       ],
       payload: {
         json: { 
-          limit: "10mb", 
+          limit: "1mb", 
         },
         urlencoded: {
-          limit: "10mb", 
+          limit: "1mb", 
         },
         sizeLimit: "2mb"
       },
