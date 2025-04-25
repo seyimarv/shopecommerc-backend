@@ -52,7 +52,8 @@
     "vite": "^5.2.11",
     "yalc": "^1.0.0-pre.53"
   },
- "engines": {
+  "packageManager": "pnpm@9.10.0",
+  "engines": {
     "node": "22.x",
     "npm": "10.x"
   }
