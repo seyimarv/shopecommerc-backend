@@ -2,12 +2,6 @@ import { loadEnv, defineConfig } from "@medusajs/framework/utils";
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd());
 
-const paystackSecretKey = process.env.PAYSTACK_SECRET_KEY;
-
-if (!paystackSecretKey) {
-  throw new Error("PAYSTACK_SECRET_KEY is required");
-}
-
 module.exports = defineConfig({
   admin: {
     disable: process.env.DISABLE_MEDUSA_ADMIN === "true" || false,
