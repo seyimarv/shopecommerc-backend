@@ -23,25 +23,19 @@
     "predeploy": "medusa db:migrate"
   },
   "dependencies": {
-    "@medusajs/admin-sdk": "latest",
-    "@medusajs/cli": "latest",
-    "@medusajs/framework": "latest",
-    "@medusajs/medusa": "latest",
+    "@medusajs/admin-sdk": "2.7.1",
+    "@medusajs/cli": "2.7.1",
+    "@medusajs/framework": "2.7.1",
+    "@medusajs/medusa": "2.7.1",
     "@mikro-orm/core": "6.4.3",
     "@mikro-orm/knex": "6.4.3",
     "@mikro-orm/migrations": "6.4.3",
     "@mikro-orm/postgresql": "6.4.3",
-    "@types/multer": "^1.4.12",
-    "@types/uuid": "^10.0.0",
-    "algoliasearch": "^5.23.2",
     "awilix": "^8.0.1",
-    "crypto": "^1.0.1",
-    "multer": "^1.4.5-lts.2",
-    "pg": "^8.13.0",
-    "uuid": "^11.1.0"
+    "pg": "^8.13.0"
   },
   "devDependencies": {
-    "@medusajs/test-utils": "latest",
+    "@medusajs/test-utils": "2.7.1",
     "@mikro-orm/cli": "6.4.3",
     "@swc/core": "1.5.7",
     "@swc/jest": "^0.2.36",
@@ -59,7 +53,6 @@
     "yalc": "^1.0.0-pre.53"
   },
   "engines": {
-    "node": ">=20",
-    "npm": "10.x"
+    "node": ">=20"
   }
 }
