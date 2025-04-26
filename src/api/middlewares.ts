@@ -25,6 +25,7 @@ export default defineMiddlewares({
       method: ["POST"],
       matcher: "/admin/collections/:id",
       additionalDataValidator: {
+          // @ts-ignore
         cover_image: z.string().optional(),
       },
     },
@@ -36,6 +37,7 @@ export default defineMiddlewares({
       matcher: "/store/products/search",
       method: ["POST"],
       middlewares: [
+        // @ts-ignore
         validateAndTransformBody(SearchSchema),
       ],
     },

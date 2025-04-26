@@ -13,9 +13,9 @@
     "medusa"
   ],
   "scripts": {
-    "build": "medusa build",
+    "build": "medusa build && node src/scripts/postBuild.js",
     "seed": "medusa exec ./src/scripts/seed.ts",
-    "start": "medusa start",
+    "start": "cd .medusa/server && medusa start --verbose",
     "dev": "medusa develop",
     "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
     "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
@@ -58,7 +58,9 @@
     "vite": "^5.2.11",
     "yalc": "^1.0.0-pre.53"
   },
+  "packageManager": "pnpm@9.10.0",
   "engines": {
-    "node": ">=20"
+    "node": "22.x",
+    "npm": "10.x"
   }
 }
