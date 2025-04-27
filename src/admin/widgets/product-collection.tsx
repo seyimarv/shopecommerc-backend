@@ -20,7 +20,6 @@ const ProductCollectionWidget = ({
   const uploadMutation = useMutation({
     mutationFn: async (file: FileList) => {
       const response = await sdk.admin.upload.create(file); // Uploading as an array
-      console.log(response);
       return response.files?.[0]?.url; // Get uploaded file URL
     },
     onSuccess: (uploadedUrl) => {
@@ -44,7 +43,7 @@ const ProductCollectionWidget = ({
           cover_image: coverImageUrl,
         },
       };
-      return await fetch(`http://localhost:9000/admin/collections/${data.id}`, {
+      return await fetch(`/admin/collections/${data.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,8 +53,6 @@ const ProductCollectionWidget = ({
       });
     },
     onSuccess: (data) => {
-      //   queryClient.invalidateQueries({ queryKey: [["announcements"]] });
-      //   reset();
     },
     onError: (error) => {
       console.error("Mutation Failed:", error.message);
