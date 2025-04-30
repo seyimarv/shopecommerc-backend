@@ -71,20 +71,13 @@ const productionConfig = {
       resolve: "@medusajs/medusa/notification",
       options: {
         providers: [
-          {
-            resolve: "@medusajs/medusa/notification-local",
-            id: "local",
+            {
+            resolve: "./src/modules/resend",
+            id: "resend",
             options: {
               channels: ["email"],
-            },
-          },
-          {
-            resolve: "@medusajs/medusa/notification-sendgrid",
-            id: "sendgrid",
-            options: {
-              channels: ["email"],
-              api_key: process.env.SENDGRID_API_KEY,
-              from: process.env.SENDGRID_FROM,
+              api_key: process.env.RESEND_API_KEY,
+              from: process.env.RESEND_FROM_EMAIL,
             },
           },
         ],
@@ -150,10 +143,12 @@ const developmentConfig = {
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/notification-local",
-            id: "local",
+            resolve: "./src/modules/resend",
+            id: "resend",
             options: {
               channels: ["email"],
+              api_key: process.env.RESEND_API_KEY,
+              from: process.env.RESEND_FROM_EMAIL,
             },
           },
         ],
@@ -179,7 +174,7 @@ const developmentConfig = {
             id: "paystack",
             options: {
               secret_key: paystackSecretKey,
-              debug: true, 
+              debug: true,
             },
           },
         ],
