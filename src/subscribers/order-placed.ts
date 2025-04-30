@@ -31,7 +31,8 @@ export default async function orderPlacedHandler({
                 id: orderId,
                 user_id: order.customer_id || "",
                 metadata: {
-                    receipt_file: cart?.metadata?.receipt_file
+                    receipt_file: cart?.metadata?.receipt_file,
+                    note: cart?.metadata?.note
                 }
             }
         })
