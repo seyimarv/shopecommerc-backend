@@ -1,6 +1,4 @@
-
-
-  import { 
+import { 
     AbstractNotificationProviderService, 
     MedusaError
   } from "@medusajs/framework/utils"
@@ -14,13 +12,22 @@
     Resend
   } from "resend";
   import { orderPlacedEmail } from "./emails/order-placed";
+  import { shippingConfirmationEmail } from "./emails/shipping-confirmation";
+import { orderPlacedAdminEmail } from "./emails/order-placed-admin";
+import { handleResetEmail } from "./emails/handle-reset";
   
   enum Templates {
     ORDER_PLACED = "order-placed",
+    SHIPPING_CONFIRMATION = "shipping-confirmation",
+    ORDER_PLACED_ADMIN = "order-placed-admin",
+    HANDLE_RESET = "handle-reset"
   }
   
   const templates: {[key in Templates]?: (props: unknown) => React.ReactNode} = {
-    [Templates.ORDER_PLACED]: orderPlacedEmail
+    [Templates.ORDER_PLACED]: orderPlacedEmail,
+    [Templates.SHIPPING_CONFIRMATION]: shippingConfirmationEmail,
+    [Templates.ORDER_PLACED_ADMIN]: orderPlacedAdminEmail,
+    [Templates.HANDLE_RESET]: handleResetEmail
   }
   
   type ResendOptions = {
@@ -88,6 +95,12 @@
       switch(template) {
         case Templates.ORDER_PLACED:
           return "Order Confirmation"
+        case Templates.SHIPPING_CONFIRMATION:
+          return "Shipping Confirmation"
+        case Templates.ORDER_PLACED_ADMIN:
+          return "Order Placed"
+        case Templates.HANDLE_RESET:
+          return "Reset Password"
         default:
           return "New Email"
       }

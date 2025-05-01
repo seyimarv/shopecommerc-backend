@@ -4,7 +4,7 @@ import type {
 } from "@medusajs/framework"
 import { updateOrderWorkflow } from "@medusajs/medusa/core-flows"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
-import { sendOrderConfirmationWorkflow } from "../workflows/send-order-confirmation"
+import { sendOrderConfirmationWorkflow, sendOrderPlacedAdminWorkflow } from "../workflows/send-order-confirmation"
 
 export default async function orderPlacedHandler({
     event: { data },
@@ -39,6 +39,13 @@ export default async function orderPlacedHandler({
         })
     }
     await sendOrderConfirmationWorkflow(container)
+        .run({
+            input: {
+                id: orderId,
+            },
+        })
+        
+    await sendOrderPlacedAdminWorkflow(container)
         .run({
             input: {
                 id: orderId,

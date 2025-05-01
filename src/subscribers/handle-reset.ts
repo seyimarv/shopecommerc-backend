@@ -17,9 +17,8 @@ export default async function resetPasswordTokenHandler({
   await notificationModuleService.createNotifications({
     to: email,
     channel: "email",
-    template: "reset-password-template",
+    template: "handle-reset",
     data: {
-      // a URL to a frontend application
       url: `${urlPrefix}/reset-password?token=${token}&email=${email}`,
     },
   });
